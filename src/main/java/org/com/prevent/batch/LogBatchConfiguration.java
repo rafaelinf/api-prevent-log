@@ -6,6 +6,7 @@ import org.com.prevent.domain.Log;
 import org.com.prevent.domain.LogVO;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
+import org.springframework.batch.core.configuration.annotation.DefaultBatchConfigurer;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
@@ -26,7 +27,9 @@ import org.springframework.core.io.FileSystemResource;
 
 @Configuration
 @EnableBatchProcessing
-public class LogBatchConfiguration {
+public class LogBatchConfiguration extends DefaultBatchConfigurer {
+
+	 
 
     @Autowired
     public JobBuilderFactory jobBuilderFactory;
@@ -91,5 +94,10 @@ public class LogBatchConfiguration {
             .build();
     }
     
- 
+    @Autowired
+	@Override
+    public void setDataSource(DataSource dataSource) {
+        // override to do not set datasource even if a datasource exist.
+        // initialize will use a Map based JobRepository (instead of database)
+    }
 }
