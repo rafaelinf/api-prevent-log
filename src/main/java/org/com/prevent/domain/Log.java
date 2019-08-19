@@ -5,29 +5,24 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 @Entity
 @Table(name="log_tb")
-@NamedQueries({
-	@NamedQuery(name="Log.findByAll", query="SELECT l FROM Log l")
-	})
 public class Log {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "log_seq")
-    @SequenceGenerator(name = "log_seq", sequenceName = "log_seq")
+    @GeneratedValue
     @Column(name = "log_id")
     private long id;
     
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "log_date")
-    private Date date;
+    private Date  date;
 
     @Column(name = "log_ip")
     private String ip;
@@ -43,6 +38,15 @@ public class Log {
     
     public Log() {
 		// TODO Auto-generated constructor stub
+	}
+    
+	public Log(long id, Date date, String ip, String request, Integer status, String useragent) {
+		this.id = id;
+		this.date = date;
+		this.ip = ip;
+		this.request = request;
+		this.status = status;
+		this.useragent = useragent;
 	}
 
 	public long getId() {

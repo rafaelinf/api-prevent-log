@@ -31,7 +31,7 @@ public class LogRepositoryIntegrationTest {
         // given
 
         Log log = new Log();
-        log.setDate(new Date());
+        //log.setDate(new Date());
         log.setIp("255.255.255.555");
         log.setRequest("GET / HTTP/1.1");
         log.setStatus(200);
