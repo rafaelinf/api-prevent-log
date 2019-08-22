@@ -26,6 +26,8 @@ public class LogRepositoryIntegrationTest {
     @Autowired
     private LogRepository logRepository;
 	
+    
+    
     @Test
     public void whenFindByIp_thenReturnLog() {
         // given

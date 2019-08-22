@@ -1,7 +1,6 @@
 package org.com.prevent.batch;
 
 import org.com.prevent.domain.Log;
-import org.com.prevent.domain.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.BatchStatus;
